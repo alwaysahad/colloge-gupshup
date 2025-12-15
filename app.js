@@ -1,7 +1,24 @@
 // ============================================
 // College GupShup - JavaScript
-// A Platform Approved by Students
+// A Platform Approved by UGC
 // ============================================
+
+// Theme Toggle
+function initTheme() {
+    const savedTheme = localStorage.getItem('gupshup_theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('gupshup_theme', newTheme);
+}
+
+// Initialize theme on page load
+initTheme();
 
 // Sample Data
 const reviews = [
@@ -316,7 +333,7 @@ function renderUniversities(searchTerm = '') {
     
     grid.innerHTML = filteredUniversities.map(uni => `
         <div class="university-card ${uni.isPartner ? 'partner' : ''}">
-            ${uni.isPartner ? '<div class="university-badge">✓ Student Approved</div>' : ''}
+            ${uni.isPartner ? '<div class="university-badge">✓ UGC Approved</div>' : ''}
             <div class="university-name">${uni.name}</div>
             <div class="university-location">📍 ${uni.location}</div>
             <div class="university-stats">
@@ -586,7 +603,7 @@ const subscriptionPlans = {
         name: 'Professional',
         monthlyPrice: '₹24,999',
         yearlyPrice: '₹19,999',
-        features: ['Advanced Analytics', 'Unlimited Reviews', 'Student Approved Badge']
+        features: ['Advanced Analytics', 'Unlimited Reviews', 'UGC Approved Badge']
     },
     enterprise: {
         name: 'Enterprise',
@@ -596,18 +613,11 @@ const subscriptionPlans = {
     }
 };
 
-// Open Subscription Modal
+// Open Subscription / Payment Page
 function openSubscription(planType) {
-    const plan = subscriptionPlans[planType];
-    const price = isYearly ? plan.yearlyPrice : plan.monthlyPrice;
-    const billing = isYearly ? 'Yearly' : 'Monthly';
-    
-    document.getElementById('selectedPlanBadge').textContent = plan.name;
-    document.getElementById('summaryPlan').textContent = plan.name;
-    document.getElementById('summaryBilling').textContent = billing;
-    document.getElementById('summaryTotal').textContent = `${price}/${isYearly ? 'month (billed yearly)' : 'month'}`;
-    
-    openModal('subscriptionModal');
+    const billing = isYearly ? 'yearly' : 'monthly';
+    // Redirect to payment page with plan details
+    window.location.href = `payment.html?plan=${planType}&billing=${billing}`;
 }
 
 // Process Subscription

@@ -2,6 +2,23 @@
 // Dashboard JavaScript
 // ============================================
 
+// Theme Toggle
+function initTheme() {
+    const savedTheme = localStorage.getItem('gupshup_theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('gupshup_theme', newTheme);
+}
+
+// Initialize theme
+initTheme();
+
 // Check Authentication
 const session = JSON.parse(localStorage.getItem('gupshup_session') || sessionStorage.getItem('gupshup_session') || 'null');
 if (!session) {
@@ -348,8 +365,11 @@ function renderColleges() {
         filteredColleges = filteredColleges.filter(c => c.state === currentState);
     }
     
-    // Apply search
-    const searchTerm = document.getElementById('searchInput')?.value?.toLowerCase() || '';
+    // Apply search (check both desktop and mobile search inputs)
+    const desktopSearch = document.getElementById('searchInput')?.value?.toLowerCase() || '';
+    const mobileSearch = document.getElementById('mobileSearchInput')?.value?.toLowerCase() || '';
+    const searchTerm = desktopSearch || mobileSearch;
+    
     if (searchTerm) {
         filteredColleges = filteredColleges.filter(c => 
             c.name.toLowerCase().includes(searchTerm) ||
@@ -472,7 +492,7 @@ function getSubscriptionBadge(subscription) {
         case 'enterprise':
             return '<span class="badge-tag enterprise">💎 Premium Verified</span>';
         case 'professional':
-            return '<span class="badge-tag professional">✓ Student Approved</span>';
+            return '<span class="badge-tag professional">✓ UGC Approved</span>';
         case 'starter':
             return '<span class="badge-tag starter">📋 Verified</span>';
         default:
@@ -701,6 +721,21 @@ document.addEventListener('click', (e) => {
 // Notifications
 function toggleNotifications() {
     showToast('Notifications coming soon!');
+}
+
+// Mobile Search Toggle
+function toggleMobileSearch() {
+    const searchBar = document.getElementById('mobileSearchBar');
+    const searchInput = document.getElementById('mobileSearchInput');
+    
+    searchBar.classList.toggle('active');
+    
+    if (searchBar.classList.contains('active')) {
+        searchInput.focus();
+    } else {
+        searchInput.value = '';
+        filterColleges(); // Reset filter
+    }
 }
 
 // Logout

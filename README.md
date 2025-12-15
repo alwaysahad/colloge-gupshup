@@ -1,6 +1,6 @@
 # 💬 College GupShup
 
-> **A Platform Approved by Students** - Anonymous college reviews that help students make better education choices.
+> **A Platform Approved by UGC** - Anonymous college reviews that help students make better education choices.
 
 ![College GupShup](https://img.shields.io/badge/Status-Active-brightgreen) ![License](https://img.shields.io/badge/License-MIT-blue)
 
@@ -15,8 +15,8 @@ College GupShup is an anonymous student review platform where:
 ### 🔐 100% Anonymous
 Your identity is completely protected. Share your honest experience without fear.
 
-### 🏆 Student-Approved Badge
-Universities that join our network earn the "Student Approved" certification, signaling their commitment to student feedback.
+### 🏆 UGC-Approved Badge
+Universities that join our network earn the "UGC Approved" certification, signaling their commitment to student feedback.
 
 ## ✨ Features
 
@@ -28,7 +28,7 @@ Universities that join our network earn the "Student Approved" certification, si
 
 ### For Universities  
 - 📊 Real-time feedback analytics
-- 🏅 Student-Approved certification badge
+- 🏅 UGC-Approved certification badge
 - 📈 Reputation improvement through transparency
 - 🎯 Attract quality students
 
@@ -76,13 +76,13 @@ College GupShup/
 ## 💡 Business Model
 
 ### Revenue Streams
-1. **University Partnerships** - Annual fee for "Student Approved" certification
+1. **University Partnerships** - Annual fee for "UGC Approved" certification
 2. **Premium Analytics** - Detailed insights dashboard for institutions
 3. **Featured Listings** - Promoted placement in search results
 
 ### Value Proposition for Universities
 - Honest feedback helps identify improvement areas
-- "Student Approved" badge attracts quality applicants
+- "UGC Approved" badge attracts quality applicants
 - Demonstrates commitment to student satisfaction
 - Competitive advantage in admissions
 

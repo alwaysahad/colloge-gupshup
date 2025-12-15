@@ -2,12 +2,105 @@
    Auth Page Styles
    ============================================ */
 
+/* Light Mode for Auth */
+[data-theme="light"] {
+    --bg-primary: #f8f7f4;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f0efeb;
+    
+    --text-primary: #1a1a1a;
+    --text-secondary: #555550;
+    --text-muted: #888880;
+    
+    --accent-primary: #d45203;
+    
+    --border-color: #e5e5e0;
+    --border-hover: #d5d5d0;
+}
+
+/* Theme Toggle on Auth Page */
+.auth-theme-toggle {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 10;
+}
+
+.theme-toggle {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+}
+
+.theme-toggle:hover {
+    border-color: var(--border-hover);
+}
+
+.theme-toggle-track {
+    position: absolute;
+    inset: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+.theme-toggle-icon {
+    font-size: 12px;
+    transition: opacity 0.15s ease;
+}
+
+.theme-toggle-icon.sun {
+    opacity: 0.3;
+}
+
+.theme-toggle-icon.moon {
+    opacity: 1;
+}
+
+[data-theme="light"] .theme-toggle-icon.sun {
+    opacity: 1;
+}
+
+[data-theme="light"] .theme-toggle-icon.moon {
+    opacity: 0.3;
+}
+
+.theme-toggle-thumb {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    left: 4px;
+    transition: transform 0.25s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .theme-toggle-thumb {
+    transform: translateX(24px);
+}
+
 .auth-body {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 24px;
+    transition: background-color 0.3s ease;
+}
+
+.auth-body *, .auth-body *::before, .auth-body *::after {
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .auth-container {
@@ -230,23 +323,152 @@
 }
 
 /* Responsive */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+    .auth-body {
+        padding: 16px;
+        align-items: flex-start;
+        padding-top: 60px;
+    }
+    
+    .auth-theme-toggle {
+        top: 16px;
+        right: 16px;
+    }
+    
     .auth-card {
-        padding: 28px 20px;
+        padding: 32px 24px;
+    }
+    
+    .auth-header .logo {
+        font-size: 1.3rem;
+    }
+    
+    .auth-tabs {
+        margin-bottom: 24px;
+    }
+    
+    .auth-tab {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-body {
+        padding: 12px;
+        padding-top: 50px;
+    }
+    
+    .auth-card {
+        padding: 24px 18px;
+        border-radius: 16px;
+    }
+    
+    .auth-header {
+        margin-bottom: 24px;
+    }
+    
+    .auth-header .logo {
+        font-size: 1.2rem;
+    }
+    
+    .auth-header .logo-icon {
+        font-size: 1.3rem;
+    }
+    
+    .auth-tagline {
+        font-size: 0.8rem;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.3rem;
     }
     
     .form-row {
         grid-template-columns: 1fr;
     }
     
+    .form-group label {
+        font-size: 0.8rem;
+    }
+    
+    .form-group input,
+    .form-group select {
+        padding: 12px 14px;
+        font-size: 0.9rem;
+    }
+    
+    .input-icon input {
+        padding-left: 42px !important;
+    }
+    
+    .input-icon svg {
+        left: 14px;
+        width: 18px;
+        height: 18px;
+    }
+    
     .social-buttons {
         flex-direction: column;
+        gap: 10px;
+    }
+    
+    .social-btn {
+        padding: 12px 16px;
+    }
+    
+    .auth-divider {
+        margin: 20px 0;
+    }
+    
+    .auth-divider span {
+        font-size: 0.8rem;
+    }
+    
+    .form-options {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
     }
     
     .trust-badges {
         flex-direction: column;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
+        margin-top: 24px;
+    }
+    
+    .trust-badge {
+        font-size: 0.8rem;
+    }
+    
+    .btn-large {
+        padding: 14px 24px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Touch targets */
+@media (hover: none) and (pointer: coarse) {
+    .form-group input,
+    .form-group select {
+        min-height: 48px;
+    }
+    
+    .social-btn {
+        min-height: 48px;
+    }
+    
+    .auth-tab {
+        min-height: 44px;
+    }
+    
+    .checkbox-wrap {
+        padding: 8px 0;
+    }
+    
+    .toggle-password {
+        padding: 12px;
     }
 }
 

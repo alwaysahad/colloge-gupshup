@@ -2,10 +2,179 @@
    Dashboard Styles
    ============================================ */
 
+/* Theme Toggle (Dashboard) */
+.theme-toggle {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+}
+
+.theme-toggle:hover {
+    border-color: var(--border-hover);
+}
+
+.theme-toggle-track {
+    position: absolute;
+    inset: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+.theme-toggle-icon {
+    font-size: 12px;
+    transition: opacity 0.15s ease;
+}
+
+.theme-toggle-icon.sun {
+    opacity: 0.3;
+}
+
+.theme-toggle-icon.moon {
+    opacity: 1;
+}
+
+[data-theme="light"] .theme-toggle-icon.sun {
+    opacity: 1;
+}
+
+[data-theme="light"] .theme-toggle-icon.moon {
+    opacity: 0.3;
+}
+
+.theme-toggle-thumb {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    left: 4px;
+    transition: transform 0.25s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .theme-toggle-thumb {
+    transform: translateX(24px);
+}
+
+/* Light Mode Overrides for Dashboard */
+[data-theme="light"] {
+    --bg-primary: #f8f7f4;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f0efeb;
+    
+    --text-primary: #1a1a1a;
+    --text-secondary: #555550;
+    --text-muted: #888880;
+    
+    --accent-primary: #d45203;
+    --accent-glow: rgba(212, 82, 3, 0.2);
+    
+    --border-color: #e5e5e0;
+    --border-hover: #d5d5d0;
+    
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+}
+
 /* Dashboard Navigation */
 .dashboard-nav {
     position: sticky;
     background: var(--bg-secondary);
+    transition: background-color 0.25s ease;
+}
+
+/* Mobile Search Bar */
+.mobile-search-btn {
+    display: none;
+}
+
+.mobile-search-bar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-secondary);
+    padding: 12px 16px;
+    z-index: 1001;
+    border-bottom: 1px solid var(--border-color);
+    animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.mobile-search-bar.active {
+    display: block;
+}
+
+.mobile-search-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 10px 14px;
+}
+
+.mobile-search-container svg {
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.mobile-search-container input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+}
+
+.mobile-search-container input::placeholder {
+    color: var(--text-muted);
+}
+
+.mobile-search-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    padding: 4px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.mobile-search-close:hover {
+    color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+    .mobile-search-btn {
+        display: flex;
+    }
 }
 
 .nav-search {
@@ -844,7 +1013,7 @@
 
 @media (max-width: 480px) {
     .quick-stats {
-        gap: 20px;
+        gap: 16px;
     }
     
     .quick-stat-value {
@@ -858,6 +1027,327 @@
     .chat-modal-content {
         height: 100vh;
         border-radius: 0;
+    }
+    
+    .welcome-section {
+        padding: 20px;
+    }
+    
+    .welcome-text h1 {
+        font-size: 1.3rem;
+    }
+    
+    .college-info {
+        padding: 16px;
+    }
+    
+    .college-name {
+        font-size: 1.1rem;
+    }
+    
+    .college-stats-row {
+        gap: 12px;
+    }
+    
+    .college-stat-item .value {
+        font-size: 1rem;
+    }
+}
+
+/* Dashboard Mobile Navigation */
+@media (max-width: 768px) {
+    .dashboard-nav .nav-container {
+        padding: 0 16px;
+    }
+    
+    .nav-search {
+        display: none;
+    }
+    
+    .user-name {
+        display: none;
+    }
+    
+    .nav-actions {
+        gap: 10px;
+    }
+    
+    .user-menu {
+        padding: 4px 8px 4px 4px;
+    }
+    
+    .user-avatar {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .nav-icon-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .theme-toggle {
+        width: 44px;
+        height: 24px;
+    }
+    
+    .theme-toggle-thumb {
+        width: 16px;
+        height: 16px;
+    }
+    
+    [data-theme="light"] .theme-toggle-thumb {
+        transform: translateX(20px);
+    }
+}
+
+/* Dashboard Mobile Content */
+@media (max-width: 768px) {
+    .dashboard-main {
+        padding: 20px 0 40px;
+    }
+    
+    .dashboard-main .container {
+        padding: 0 16px;
+    }
+    
+    .welcome-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        padding: 24px 20px;
+        border-radius: 16px;
+    }
+    
+    .welcome-text h1 {
+        font-size: 1.4rem;
+    }
+    
+    .welcome-text p {
+        font-size: 0.9rem;
+    }
+    
+    .quick-stats {
+        width: 100%;
+        justify-content: space-around;
+    }
+    
+    .filters-section {
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+    
+    .filter-tabs {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .filter-tabs::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .filter-tab {
+        flex-shrink: 0;
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+    
+    .filter-actions {
+        width: 100%;
+    }
+    
+    .filter-actions select {
+        flex: 1;
+        font-size: 0.85rem;
+    }
+    
+    .colleges-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .college-card {
+        border-radius: 16px;
+    }
+    
+    .college-image {
+        height: 180px;
+    }
+    
+    .college-badge-overlay {
+        top: 12px;
+        left: 12px;
+        gap: 6px;
+    }
+    
+    .badge-tag {
+        padding: 5px 10px;
+        font-size: 0.65rem;
+    }
+    
+    .college-rating-overlay {
+        bottom: 12px;
+        right: 12px;
+        padding: 6px 12px;
+    }
+    
+    .college-info {
+        padding: 20px;
+    }
+    
+    .college-name {
+        font-size: 1.15rem;
+    }
+    
+    .college-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .college-actions .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 16px;
+    }
+    
+    .load-more-section {
+        margin-top: 30px;
+    }
+}
+
+/* College Modal Mobile */
+@media (max-width: 768px) {
+    .college-modal-content {
+        margin: 0;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+    
+    .modal-college-header {
+        height: 200px;
+    }
+    
+    .modal-college-header-overlay {
+        padding: 20px;
+    }
+    
+    .modal-college-header-overlay h2 {
+        font-size: 1.5rem;
+    }
+    
+    .modal-college-body {
+        padding: 20px;
+    }
+    
+    .modal-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .modal-stat-card {
+        padding: 16px;
+    }
+    
+    .modal-stat-card .value {
+        font-size: 1.3rem;
+    }
+    
+    .modal-section h3 {
+        font-size: 1rem;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .modal-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Chat Modal Mobile */
+@media (max-width: 768px) {
+    .chat-modal-content {
+        height: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+        margin: 0;
+    }
+    
+    .chat-header {
+        padding: 16px;
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .chat-college-img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .chat-college-info h3 {
+        font-size: 1rem;
+    }
+    
+    .chat-status {
+        align-self: flex-start;
+    }
+    
+    .chat-messages {
+        padding: 16px;
+    }
+    
+    .chat-message {
+        max-width: 90%;
+    }
+    
+    .message-bubble {
+        padding: 12px 14px;
+        font-size: 0.9rem;
+    }
+    
+    .chat-input-area {
+        padding: 12px 16px 20px;
+    }
+    
+    .anonymous-badge {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
+    
+    .chat-form input {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .chat-form .btn {
+        width: 46px;
+        height: 46px;
+    }
+}
+
+/* Touch targets for mobile */
+@media (hover: none) and (pointer: coarse) {
+    .college-actions .btn {
+        min-height: 48px;
+    }
+    
+    .filter-tab {
+        min-height: 44px;
+    }
+    
+    .filter-actions select {
+        min-height: 44px;
+    }
+    
+    .user-menu {
+        min-height: 44px;
     }
 }
 

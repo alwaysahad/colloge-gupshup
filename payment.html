@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - College GupShup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="payment.css">
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle payment-theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <div class="theme-toggle-track">
+            <span class="theme-toggle-icon sun">☀️</span>
+            <span class="theme-toggle-icon moon">🌙</span>
+        </div>
+        <div class="theme-toggle-thumb"></div>
+    </button>
+
+    <div class="payment-page">
+        <!-- Left Side - Order Summary -->
+        <div class="order-panel">
+            <a href="index.html" class="back-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back to plans
+            </a>
+
+            <div class="order-header">
+                <div class="brand">
+                    <span class="brand-icon">💬</span>
+                    <span>CollegeGupShup</span>
+                </div>
+                <h1>Complete your subscription</h1>
+            </div>
+
+            <div class="selected-plan" id="selectedPlan">
+                <div class="plan-badge" id="planBadge">PROFESSIONAL</div>
+                <div class="plan-details">
+                    <h2 id="planName">Professional Plan</h2>
+                    <p id="planDesc">Best for growing institutions</p>
+                </div>
+                <div class="plan-price-display">
+                    <span class="price" id="planPrice">₹24,999</span>
+                    <span class="period" id="planPeriod">/month</span>
+                </div>
+            </div>
+
+            <div class="order-breakdown">
+                <h3>Order Summary</h3>
+                <div class="breakdown-row">
+                    <span>Plan</span>
+                    <span id="summaryPlanName">Professional</span>
+                </div>
+                <div class="breakdown-row">
+                    <span>Billing cycle</span>
+                    <span id="summaryBilling">Monthly</span>
+                </div>
+                <div class="breakdown-row">
+                    <span>Subtotal</span>
+                    <span id="summarySubtotal">₹24,999</span>
+                </div>
+                <div class="breakdown-row">
+                    <span>GST (18%)</span>
+                    <span id="summaryGst">₹4,500</span>
+                </div>
+                <div class="breakdown-row total">
+                    <span>Total</span>
+                    <span id="summaryTotal">₹29,499</span>
+                </div>
+            </div>
+
+            <div class="features-included">
+                <h4>What's included:</h4>
+                <ul id="featuresList">
+                    <li>✓ Advanced Analytics Dashboard</li>
+                    <li>✓ Unlimited Student Reviews</li>
+                    <li>✓ UGC Approved Badge</li>
+                    <li>✓ Priority 24/7 Support</li>
+                    <li>✓ Featured College Listing</li>
+                </ul>
+            </div>
+
+            <div class="secure-footer">
+                <div class="secure-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                    256-bit SSL Encryption
+                </div>
+                <div class="payment-partners">
+                    <span>Powered by</span>
+                    <img src="https://razorpay.com/assets/razorpay-logo.svg" alt="Razorpay" class="razorpay-logo">
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Payment Form -->
+        <div class="payment-panel">
+            <form class="payment-form" id="paymentForm" onsubmit="processPayment(event)">
+                <!-- Institution Details -->
+                <div class="form-section">
+                    <h3>Institution Details</h3>
+                    <div class="form-field">
+                        <label>Institution Name</label>
+                        <input type="text" name="institution" placeholder="e.g., Delhi University" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label>Contact Person</label>
+                            <input type="text" name="contact" placeholder="Full name" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Designation</label>
+                            <input type="text" name="designation" placeholder="e.g., Registrar">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label>Email</label>
+                            <input type="email" name="email" placeholder="official@university.edu" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Phone</label>
+                            <input type="tel" name="phone" placeholder="+91 98765 43210" required>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label>GST Number <span class="optional">(Optional)</span></label>
+                        <input type="text" name="gst" placeholder="For tax invoice">
+                    </div>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="form-section">
+                    <h3>Payment Method</h3>
+                    <div class="payment-methods">
+                        <label class="method-option">
+                            <input type="radio" name="method" value="card" checked>
+                            <div class="method-card">
+                                <div class="method-icon">💳</div>
+                                <div class="method-info">
+                                    <span class="method-name">Credit / Debit Card</span>
+                                    <span class="method-desc">Visa, Mastercard, RuPay</span>
+                                </div>
+                                <div class="method-check">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="method-option">
+                            <input type="radio" name="method" value="upi">
+                            <div class="method-card">
+                                <div class="method-icon">📱</div>
+                                <div class="method-info">
+                                    <span class="method-name">UPI</span>
+                                    <span class="method-desc">GPay, PhonePe, Paytm</span>
+                                </div>
+                                <div class="method-check">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="method-option">
+                            <input type="radio" name="method" value="netbanking">
+                            <div class="method-card">
+                                <div class="method-icon">🏦</div>
+                                <div class="method-info">
+                                    <span class="method-name">Net Banking</span>
+                                    <span class="method-desc">All major banks</span>
+                                </div>
+                                <div class="method-check">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Card Details (shown when card selected) -->
+                    <div class="card-details" id="cardDetails">
+                        <div class="form-field">
+                            <label>Card Number</label>
+                            <div class="card-input">
+                                <input type="text" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCardNumber(this)">
+                                <div class="card-icons">
+                                    <span class="card-icon visa">VISA</span>
+                                    <span class="card-icon mc">MC</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label>Expiry Date</label>
+                                <input type="text" name="expiry" placeholder="MM/YY" maxlength="5" oninput="formatExpiry(this)">
+                            </div>
+                            <div class="form-field">
+                                <label>CVV</label>
+                                <div class="cvv-input">
+                                    <input type="password" name="cvv" placeholder="•••" maxlength="4">
+                                    <span class="cvv-hint" title="3 or 4 digits on back of card">?</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <label>Name on Card</label>
+                            <input type="text" name="cardName" placeholder="As printed on card">
+                        </div>
+                    </div>
+
+                    <!-- UPI Details (hidden by default) -->
+                    <div class="upi-details hidden" id="upiDetails">
+                        <div class="form-field">
+                            <label>UPI ID</label>
+                            <input type="text" name="upiId" placeholder="yourname@upi">
+                        </div>
+                        <div class="upi-apps">
+                            <span>Or pay using:</span>
+                            <div class="upi-icons">
+                                <button type="button" class="upi-btn">GPay</button>
+                                <button type="button" class="upi-btn">PhonePe</button>
+                                <button type="button" class="upi-btn">Paytm</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Netbanking Details (hidden by default) -->
+                    <div class="netbanking-details hidden" id="netbankingDetails">
+                        <div class="form-field">
+                            <label>Select Bank</label>
+                            <select name="bank">
+                                <option value="">Choose your bank...</option>
+                                <option value="sbi">State Bank of India</option>
+                                <option value="hdfc">HDFC Bank</option>
+                                <option value="icici">ICICI Bank</option>
+                                <option value="axis">Axis Bank</option>
+                                <option value="kotak">Kotak Mahindra Bank</option>
+                                <option value="pnb">Punjab National Bank</option>
+                                <option value="bob">Bank of Baroda</option>
+                                <option value="other">Other Banks</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms -->
+                <div class="terms-check">
+                    <label class="checkbox-wrap">
+                        <input type="checkbox" name="terms" required>
+                        <span class="custom-checkbox"></span>
+                        <span>I agree to the <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a> and <a href="#">Refund Policy</a></span>
+                    </label>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="pay-button" id="payButton">
+                    <span class="pay-text">Pay ₹29,499</span>
+                    <span class="pay-loader hidden">
+                        <svg class="spinner" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4" stroke-linecap="round"/>
+                        </svg>
+                        Processing...
+                    </span>
+                </button>
+
+                <p class="cancel-note">
+                    Cancel anytime. No questions asked.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal hidden" id="successModal">
+        <div class="success-content">
+            <div class="success-icon">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="8 12 11 15 16 9"/>
+                </svg>
+            </div>
+            <h2>Payment Successful! 🎉</h2>
+            <p>Welcome to College GupShup Partner Network</p>
+            <div class="success-details">
+                <div class="detail-row">
+                    <span>Transaction ID</span>
+                    <span id="txnId">TXN_XXXXXXXX</span>
+                </div>
+                <div class="detail-row">
+                    <span>Amount Paid</span>
+                    <span>₹29,499</span>
+                </div>
+                <div class="detail-row">
+                    <span>Plan Activated</span>
+                    <span>Professional</span>
+                </div>
+            </div>
+            <p class="success-note">A confirmation email has been sent to your registered email address.</p>
+            <div class="success-actions">
+                <a href="dashboard.html" class="btn-primary">Go to Dashboard</a>
+                <button onclick="window.print()" class="btn-secondary">Download Receipt</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="payment.js"></script>
+</body>
+</html>
+

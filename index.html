@@ -21,6 +21,13 @@
                 <a href="#reviews">Reviews</a>
                 <a href="#universities">Universities</a>
                 <a href="#pricing">Pricing</a>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <div class="theme-toggle-track">
+                        <span class="theme-toggle-icon sun">☀️</span>
+                        <span class="theme-toggle-icon moon">🌙</span>
+                    </div>
+                    <div class="theme-toggle-thumb"></div>
+                </button>
                 <a href="auth.html" class="btn btn-secondary">Login</a>
                 <a href="auth.html" class="btn btn-primary">Sign Up Free</a>
             </div>
@@ -37,6 +44,16 @@
         <a href="#reviews" onclick="toggleMobileMenu()">Reviews</a>
         <a href="#universities" onclick="toggleMobileMenu()">Universities</a>
         <a href="#about" onclick="toggleMobileMenu()">About</a>
+        <div class="mobile-theme-row">
+            <span>Theme</span>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <div class="theme-toggle-track">
+                    <span class="theme-toggle-icon sun">☀️</span>
+                    <span class="theme-toggle-icon moon">🌙</span>
+                </div>
+                <div class="theme-toggle-thumb"></div>
+            </button>
+        </div>
         <a href="auth.html" class="btn btn-secondary">Login</a>
         <a href="auth.html" class="btn btn-primary">Sign Up Free</a>
     </div>
@@ -201,7 +218,7 @@
                         <li><span class="check">✓</span> Up to 500 Student Reviews</li>
                         <li><span class="check">✓</span> College Profile Page</li>
                         <li><span class="check">✓</span> Email Support</li>
-                        <li class="disabled"><span class="cross">×</span> Student Approved Badge</li>
+                        <li class="disabled"><span class="cross">×</span> UGC Approved Badge</li>
                         <li class="disabled"><span class="cross">×</span> Priority Listing</li>
                         <li class="disabled"><span class="cross">×</span> API Access</li>
                     </ul>
@@ -224,7 +241,7 @@
                         <li><span class="check">✓</span> Advanced Analytics & Reports</li>
                         <li><span class="check">✓</span> Unlimited Student Reviews</li>
                         <li><span class="check">✓</span> Enhanced College Profile</li>
-                        <li><span class="check">✓</span> <strong>✓ Student Approved Badge</strong></li>
+                        <li><span class="check">✓</span> <strong>✓ UGC Approved Badge</strong></li>
                         <li><span class="check">✓</span> Priority Support (24/7)</li>
                         <li><span class="check">✓</span> Featured Listing</li>
                         <li class="disabled"><span class="cross">×</span> API Access</li>
@@ -274,11 +291,11 @@
             <div class="cta-card">
                 <div class="cta-content">
                     <span class="section-tag">For Universities</span>
-                    <h2>Join the Student-Approved Network</h2>
-                    <p>Get valuable insights from your students. Improve your institution. Earn the "Student Approved" badge that attracts quality applicants.</p>
+                    <h2>Join the UGC-Approved Network</h2>
+                    <p>Get valuable insights from your students. Improve your institution. Earn the "UGC Approved" badge that attracts quality applicants.</p>
                     <ul class="cta-benefits">
                         <li>📊 Real-time feedback analytics</li>
-                        <li>🏆 Student-Approved certification</li>
+                        <li>🏆 UGC-Approved certification</li>
                         <li>📈 Improve your institution's reputation</li>
                         <li>🎯 Attract quality students</li>
                     </ul>
@@ -286,7 +303,7 @@
                 </div>
                 <div class="cta-visual">
                     <div class="rating-card-demo">
-                        <div class="demo-badge">✓ Student Approved</div>
+                        <div class="demo-badge">✓ UGC Approved</div>
                         <div class="demo-rating">
                             <span class="demo-score">4.5</span>
                             <div class="demo-stars">★★★★★</div>
@@ -461,7 +478,7 @@
             <button class="modal-close" onclick="closeModal('partnerModal')">×</button>
             <div class="modal-header">
                 <h2>Partner With Us</h2>
-                <p>Get the Student-Approved badge for your institution</p>
+                <p>Get the UGC-Approved badge for your institution</p>
             </div>
             <form class="partner-form" id="partnerForm" onsubmit="submitPartner(event)">
                 <div class="form-group">
@@ -510,7 +527,7 @@
             <div class="modal-header">
                 <div class="selected-plan-badge" id="selectedPlanBadge">Professional</div>
                 <h2>Complete Your Subscription</h2>
-                <p>Start your journey to becoming Student Approved</p>
+                <p>Start your journey to becoming UGC Approved</p>
             </div>
             
             <div class="subscription-summary">
