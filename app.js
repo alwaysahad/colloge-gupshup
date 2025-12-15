@@ -551,3 +551,94 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Pricing Toggle
+let isYearly = false;
+
+function togglePricing() {
+    isYearly = document.getElementById('pricingToggle').checked;
+    
+    // Update toggle labels
+    document.querySelectorAll('.toggle-label').forEach(label => {
+        label.classList.toggle('active', label.dataset.period === (isYearly ? 'yearly' : 'monthly'));
+    });
+    
+    // Update prices
+    document.querySelectorAll('.plan-price .amount').forEach(amount => {
+        const price = isYearly ? amount.dataset.yearly : amount.dataset.monthly;
+        amount.textContent = price;
+    });
+    
+    // Update period text
+    document.querySelectorAll('.plan-price .period').forEach(period => {
+        period.textContent = isYearly ? '/month (billed yearly)' : '/month';
+    });
+}
+
+// Subscription Plans Data
+const subscriptionPlans = {
+    starter: {
+        name: 'Starter',
+        monthlyPrice: '₹9,999',
+        yearlyPrice: '₹7,999',
+        features: ['Basic Analytics', '500 Reviews', 'College Profile']
+    },
+    professional: {
+        name: 'Professional',
+        monthlyPrice: '₹24,999',
+        yearlyPrice: '₹19,999',
+        features: ['Advanced Analytics', 'Unlimited Reviews', 'Student Approved Badge']
+    },
+    enterprise: {
+        name: 'Enterprise',
+        monthlyPrice: '₹49,999',
+        yearlyPrice: '₹39,999',
+        features: ['Everything + API', 'Multiple Campuses', 'Dedicated Manager']
+    }
+};
+
+// Open Subscription Modal
+function openSubscription(planType) {
+    const plan = subscriptionPlans[planType];
+    const price = isYearly ? plan.yearlyPrice : plan.monthlyPrice;
+    const billing = isYearly ? 'Yearly' : 'Monthly';
+    
+    document.getElementById('selectedPlanBadge').textContent = plan.name;
+    document.getElementById('summaryPlan').textContent = plan.name;
+    document.getElementById('summaryBilling').textContent = billing;
+    document.getElementById('summaryTotal').textContent = `${price}/${isYearly ? 'month (billed yearly)' : 'month'}`;
+    
+    openModal('subscriptionModal');
+}
+
+// Process Subscription
+function processSubscription(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const formData = new FormData(form);
+    
+    const subscriptionData = {
+        institution: formData.get('institution'),
+        contactName: formData.get('contact_name'),
+        designation: formData.get('designation'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        gst: formData.get('gst'),
+        paymentMethod: formData.get('payment'),
+        plan: document.getElementById('summaryPlan').textContent,
+        billing: document.getElementById('summaryBilling').textContent,
+        timestamp: new Date().toISOString()
+    };
+    
+    console.log('Subscription Data:', subscriptionData);
+    
+    // Close modal
+    closeModal('subscriptionModal');
+    
+    // Show success toast
+    showToast('🎉 Subscription request received! Our team will contact you shortly.');
+    
+    // Reset form
+    form.reset();
+}
+

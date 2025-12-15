@@ -350,8 +350,40 @@
     background: var(--success);
 }
 
+.badge-tag.enterprise {
+    background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+}
+
+.badge-tag.professional {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+}
+
+.badge-tag.starter {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
 .badge-tag.category {
     background: rgba(255, 107, 53, 0.9);
+}
+
+/* Subscription card styles */
+.college-card.enterprise {
+    border-color: rgba(139, 92, 246, 0.4);
+}
+
+.college-card.enterprise:hover {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+}
+
+.college-card.professional {
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+.college-card.professional:hover {
+    border-color: var(--success);
 }
 
 .college-rating-overlay {

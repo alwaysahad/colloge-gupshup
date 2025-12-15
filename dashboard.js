@@ -23,6 +23,7 @@ const colleges = [
         students: 12500,
         established: 1961,
         isPartner: true,
+        subscription: "enterprise", // enterprise, professional, starter, or null
         description: "IIT Delhi is one of the most prestigious engineering institutions in India, known for its excellent faculty, cutting-edge research, and outstanding placement records.",
         courses: ["B.Tech", "M.Tech", "MBA", "M.Sc", "Ph.D"],
         highlights: ["NIRF Rank #2", "100% Placements", "World-class Research", "Strong Alumni Network"]
@@ -40,6 +41,7 @@ const colleges = [
         students: 11800,
         established: 1958,
         isPartner: true,
+        subscription: "enterprise",
         description: "IIT Bombay is consistently ranked among the top engineering colleges in India and Asia, famous for Techfest and exceptional campus life.",
         courses: ["B.Tech", "M.Tech", "MBA", "M.Des", "Ph.D"],
         highlights: ["NIRF Rank #3", "Techfest", "Beautiful Campus", "Top Recruiters"]
@@ -57,6 +59,7 @@ const colleges = [
         students: 10200,
         established: 1959,
         isPartner: true,
+        subscription: "enterprise",
         description: "IIT Madras is ranked #1 among engineering institutions in India, known for its research output, startup ecosystem, and beautiful campus.",
         courses: ["B.Tech", "M.Tech", "MBA", "M.Sc", "Ph.D"],
         highlights: ["NIRF Rank #1", "Research Excellence", "Startup Incubator", "Deer Campus"]
@@ -74,6 +77,7 @@ const colleges = [
         students: 14500,
         established: 1964,
         isPartner: true,
+        subscription: "professional",
         description: "BITS Pilani offers flexible curriculum, dual degrees, and Practice School program that provides excellent industry exposure.",
         courses: ["B.E.", "M.E.", "MBA", "M.Sc", "Ph.D"],
         highlights: ["Flexible Curriculum", "Practice School", "BITS Fests", "Strong Alumni"]
@@ -91,6 +95,7 @@ const colleges = [
         students: 132000,
         established: 1922,
         isPartner: false,
+        subscription: null,
         description: "Delhi University is one of India's largest and most prestigious universities, offering diverse programs across multiple colleges.",
         courses: ["B.A.", "B.Sc", "B.Com", "M.A.", "Ph.D"],
         highlights: ["Historic Campus", "Cultural Hub", "Top Colleges", "Research Opportunities"]
@@ -108,6 +113,7 @@ const colleges = [
         students: 6800,
         established: 1964,
         isPartner: true,
+        subscription: "professional",
         description: "NIT Trichy is one of the premier NITs in India, known for excellent academics, Pragyan fest, and strong placement records.",
         courses: ["B.Tech", "M.Tech", "MBA", "M.Sc", "Ph.D"],
         highlights: ["Top NIT", "Pragyan Fest", "Good Placements", "Research Focus"]
@@ -125,6 +131,7 @@ const colleges = [
         students: 28000,
         established: 1984,
         isPartner: true,
+        subscription: "professional",
         description: "VIT is one of India's top private universities with excellent infrastructure, diverse student body, and strong industry connections.",
         courses: ["B.Tech", "M.Tech", "MBA", "M.Sc", "Ph.D"],
         highlights: ["Modern Campus", "Industry Tie-ups", "International Exposure", "Good Hostels"]
@@ -142,6 +149,7 @@ const colleges = [
         students: 18500,
         established: 1957,
         isPartner: true,
+        subscription: "professional",
         description: "MIT Manipal offers a unique coastal campus experience with excellent medical and engineering programs and international collaborations.",
         courses: ["B.Tech", "M.Tech", "MBBS", "MBA", "Ph.D"],
         highlights: ["Beautiful Campus", "Medical Excellence", "Beach Town", "Global Exposure"]
@@ -159,6 +167,7 @@ const colleges = [
         students: 4200,
         established: 1909,
         isPartner: true,
+        subscription: "enterprise",
         description: "IISc Bangalore is India's premier research institution, consistently ranked #1 for research output and scientific innovation.",
         courses: ["B.Sc (Research)", "M.Tech", "M.Sc", "Ph.D"],
         highlights: ["Research #1", "Nobel Laureates", "Green Campus", "Science Excellence"]
@@ -176,6 +185,7 @@ const colleges = [
         students: 52000,
         established: 1985,
         isPartner: false,
+        subscription: "starter",
         description: "SRM is one of India's largest private universities with multiple campuses and a wide range of programs.",
         courses: ["B.Tech", "M.Tech", "MBBS", "MBA", "Ph.D"],
         highlights: ["Large Campus", "Many Branches", "Good Infrastructure", "Diverse Programs"]
@@ -193,6 +203,7 @@ const colleges = [
         students: 5800,
         established: 1960,
         isPartner: true,
+        subscription: "professional",
         description: "NIT Surathkal is among the top NITs, located on a beautiful coastal campus with excellent academics and placements.",
         courses: ["B.Tech", "M.Tech", "MBA", "MCA", "Ph.D"],
         highlights: ["Beach Campus", "Top Placements", "Engineer Fest", "Sports Culture"]
@@ -210,6 +221,7 @@ const colleges = [
         students: 11200,
         established: 1955,
         isPartner: false,
+        subscription: null,
         description: "Jadavpur University is one of West Bengal's most prestigious institutions, known for engineering and humanities programs.",
         courses: ["B.E.", "M.E.", "B.A.", "M.A.", "Ph.D"],
         highlights: ["Cultural Hub", "Research Focus", "Historic Campus", "Affordable Fees"]
@@ -227,6 +239,7 @@ const colleges = [
         students: 2800,
         established: 1998,
         isPartner: true,
+        subscription: "professional",
         description: "IIIT Hyderabad is India's top IT-focused institution with cutting-edge research in AI, ML, and computer science.",
         courses: ["B.Tech", "M.Tech", "M.S.", "Ph.D"],
         highlights: ["AI Research", "Startup Culture", "Tech Focus", "Industry Ready"]
@@ -244,6 +257,7 @@ const colleges = [
         students: 26000,
         established: 1969,
         isPartner: true,
+        subscription: "starter",
         description: "Christ University is known for its disciplined environment, excellent management programs, and beautiful campus.",
         courses: ["BBA", "B.Com", "MBA", "B.A.", "M.A."],
         highlights: ["Discipline", "Management Focus", "Cultural Events", "City Campus"]
@@ -261,6 +275,7 @@ const colleges = [
         students: 125000,
         established: 2005,
         isPartner: false,
+        subscription: null,
         description: "Amity University is one of India's largest private university groups with campuses across India and abroad.",
         courses: ["B.Tech", "BBA", "B.Com", "Law", "Media"],
         highlights: ["Large Network", "Multiple Campuses", "Industry Visits", "Diverse Programs"]
@@ -278,6 +293,7 @@ const colleges = [
         students: 8900,
         established: 1959,
         isPartner: true,
+        subscription: "enterprise",
         description: "IIT Kanpur is known for pioneering computer science education in India and exceptional research output.",
         courses: ["B.Tech", "M.Tech", "MBA", "M.Des", "Ph.D"],
         highlights: ["CS Pioneer", "Antaragni Fest", "Research Excellence", "Strong Alumni"]
@@ -360,11 +376,11 @@ function renderColleges() {
     const collegesToShow = filteredColleges.slice(0, displayedColleges);
     
     grid.innerHTML = collegesToShow.map((college, index) => `
-        <div class="college-card ${college.isPartner ? 'partner' : ''}" style="animation-delay: ${index * 0.1}s">
+        <div class="college-card ${college.isPartner ? 'partner' : ''} ${college.subscription || ''}" style="animation-delay: ${index * 0.1}s">
             <div class="college-image">
                 <img src="${college.image}" alt="${college.name}" loading="lazy">
                 <div class="college-badge-overlay">
-                    ${college.isPartner ? '<span class="badge-tag partner">✓ Student Approved</span>' : ''}
+                    ${getSubscriptionBadge(college.subscription)}
                     <span class="badge-tag category">${college.category.toUpperCase()}</span>
                 </div>
                 <div class="college-rating-overlay">
@@ -448,6 +464,20 @@ function getStars(rating) {
     const full = Math.floor(rating);
     const half = rating % 1 >= 0.5;
     return '★'.repeat(full) + (half ? '½' : '');
+}
+
+// Get Subscription Badge
+function getSubscriptionBadge(subscription) {
+    switch (subscription) {
+        case 'enterprise':
+            return '<span class="badge-tag enterprise">💎 Premium Verified</span>';
+        case 'professional':
+            return '<span class="badge-tag professional">✓ Student Approved</span>';
+        case 'starter':
+            return '<span class="badge-tag starter">📋 Verified</span>';
+        default:
+            return '';
+    }
 }
 
 // Format Number
