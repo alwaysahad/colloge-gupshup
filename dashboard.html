@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - College GupShup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar dashboard-nav">
+        <div class="nav-container">
+            <a href="dashboard.html" class="logo">
+                <span class="logo-icon">💬</span>
+                <span class="logo-text">College<span class="highlight">GupShup</span></span>
+            </a>
+            
+            <div class="nav-search">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                </svg>
+                <input type="text" placeholder="Search colleges..." id="searchInput" oninput="filterColleges()">
+            </div>
+            
+            <div class="nav-actions">
+                <button class="nav-icon-btn" onclick="toggleNotifications()">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                    </svg>
+                    <span class="notification-badge">3</span>
+                </button>
+                
+                <div class="user-menu" onclick="toggleUserMenu()">
+                    <img src="" alt="" class="user-avatar" id="userAvatar">
+                    <span class="user-name" id="userName">User</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                    
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="#" class="dropdown-item">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            My Profile
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                            </svg>
+                            My Reviews
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                            </svg>
+                            Settings
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout" onclick="logout()">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                <polyline points="16 17 21 12 16 7"/>
+                                <line x1="21" y1="12" x2="9" y2="12"/>
+                            </svg>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <div class="container">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <div class="welcome-text">
+                    <h1>Welcome back, <span id="welcomeName">Student</span>! 👋</h1>
+                    <p>Explore colleges, read honest reviews, and connect with students anonymously.</p>
+                </div>
+                <div class="quick-stats">
+                    <div class="quick-stat">
+                        <span class="quick-stat-value">500+</span>
+                        <span class="quick-stat-label">Colleges</span>
+                    </div>
+                    <div class="quick-stat">
+                        <span class="quick-stat-value">15K+</span>
+                        <span class="quick-stat-label">Reviews</span>
+                    </div>
+                    <div class="quick-stat">
+                        <span class="quick-stat-value">50K+</span>
+                        <span class="quick-stat-label">Students</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-section">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">All Colleges</button>
+                    <button class="filter-tab" data-filter="iit">IITs</button>
+                    <button class="filter-tab" data-filter="nit">NITs</button>
+                    <button class="filter-tab" data-filter="private">Private</button>
+                    <button class="filter-tab" data-filter="state">State Universities</button>
+                </div>
+                <div class="filter-actions">
+                    <select id="sortBy" onchange="sortColleges()">
+                        <option value="rating">Sort by Rating</option>
+                        <option value="reviews">Most Reviews</option>
+                        <option value="name">Alphabetical</option>
+                    </select>
+                    <select id="stateFilter" onchange="filterColleges()">
+                        <option value="">All States</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="maharashtra">Maharashtra</option>
+                        <option value="karnataka">Karnataka</option>
+                        <option value="tamil-nadu">Tamil Nadu</option>
+                        <option value="rajasthan">Rajasthan</option>
+                        <option value="uttar-pradesh">Uttar Pradesh</option>
+                        <option value="west-bengal">West Bengal</option>
+                        <option value="telangana">Telangana</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Colleges Grid -->
+            <div class="colleges-grid" id="collegesGrid">
+                <!-- Colleges will be populated by JavaScript -->
+            </div>
+
+            <!-- Load More -->
+            <div class="load-more-section">
+                <button class="btn btn-secondary btn-large" onclick="loadMoreColleges()">
+                    Load More Colleges
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- College Details Modal -->
+    <div class="modal" id="collegeModal">
+        <div class="modal-overlay" onclick="closeCollegeModal()"></div>
+        <div class="modal-content college-modal-content">
+            <button class="modal-close" onclick="closeCollegeModal()">×</button>
+            <div id="collegeModalBody">
+                <!-- Content populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Anonymous Chat Modal -->
+    <div class="modal" id="chatModal">
+        <div class="modal-overlay" onclick="closeChatModal()"></div>
+        <div class="modal-content chat-modal-content">
+            <button class="modal-close" onclick="closeChatModal()">×</button>
+            <div class="chat-header">
+                <div class="chat-college-info">
+                    <img src="" alt="" class="chat-college-img" id="chatCollegeImg">
+                    <div>
+                        <h3 id="chatCollegeName">College Name</h3>
+                        <p>Anonymous Student Chat</p>
+                    </div>
+                </div>
+                <div class="chat-status">
+                    <span class="online-dot"></span>
+                    <span id="onlineCount">24 students online</span>
+                </div>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages populated by JS -->
+            </div>
+            <div class="chat-input-area">
+                <div class="anonymous-badge">
+                    <span>🎭</span>
+                    <span>Chatting Anonymously</span>
+                </div>
+                <form class="chat-form" onsubmit="sendMessage(event)">
+                    <input type="text" placeholder="Ask anything about this college..." id="chatInput" autocomplete="off">
+                    <button type="submit" class="btn btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"/>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <div class="toast-icon">✓</div>
+        <div class="toast-message" id="toastMessage">Success!</div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
+
