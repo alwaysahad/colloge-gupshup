@@ -569,55 +569,72 @@ window.addEventListener('scroll', () => {
 });
 
 // Pricing Toggle
-let isYearly = false;
+let currentBilling = 'monthly';
 
-function togglePricing() {
-    isYearly = document.getElementById('pricingToggle').checked;
+function switchBilling(billing) {
+    currentBilling = billing;
     
-    // Update toggle labels
-    document.querySelectorAll('.toggle-label').forEach(label => {
-        label.classList.toggle('active', label.dataset.period === (isYearly ? 'yearly' : 'monthly'));
+    // Update toggle buttons
+    document.querySelectorAll('.billing-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.billing === billing);
     });
     
     // Update prices
     document.querySelectorAll('.plan-price .amount').forEach(amount => {
-        const price = isYearly ? amount.dataset.yearly : amount.dataset.monthly;
+        let price;
+        switch(billing) {
+            case 'semiannually':
+                price = amount.dataset.semiannually;
+                break;
+            case 'annually':
+                price = amount.dataset.annually;
+                break;
+            default:
+                price = amount.dataset.monthly;
+        }
         amount.textContent = price;
     });
     
     // Update period text
+    let periodText;
+    switch(billing) {
+        case 'semiannually':
+            periodText = '/6 months';
+            break;
+        case 'annually':
+            periodText = '/year';
+            break;
+        default:
+            periodText = '/month';
+    }
+    
     document.querySelectorAll('.plan-price .period').forEach(period => {
-        period.textContent = isYearly ? '/month (billed yearly)' : '/month';
+        period.textContent = periodText;
     });
 }
 
 // Subscription Plans Data
 const subscriptionPlans = {
-    starter: {
-        name: 'Starter',
-        monthlyPrice: '₹9,999',
-        yearlyPrice: '₹7,999',
-        features: ['Basic Analytics', '500 Reviews', 'College Profile']
+    institute: {
+        name: 'Institute Plan',
+        monthlyPrice: '₹10,000',
+        semiannuallyPrice: '₹45,000',
+        annuallyPrice: '₹80,000',
+        features: ['Advanced Analytics', 'Unlimited Reviews', 'UGC Approved Badge', 'Dedicated Manager']
     },
-    professional: {
-        name: 'Professional',
-        monthlyPrice: '₹24,999',
-        yearlyPrice: '₹19,999',
-        features: ['Advanced Analytics', 'Unlimited Reviews', 'UGC Approved Badge']
-    },
-    enterprise: {
-        name: 'Enterprise',
-        monthlyPrice: '₹49,999',
-        yearlyPrice: '₹39,999',
-        features: ['Everything + API', 'Multiple Campuses', 'Dedicated Manager']
+    'student-premium': {
+        name: 'Student Premium',
+        monthlyPrice: '₹200',
+        semiannuallyPrice: '₹450',
+        annuallyPrice: '₹700',
+        features: ['Ad-free Experience', 'Exclusive Insights', 'Placement Stats', 'Alumni Q&A']
     }
 };
 
 // Open Subscription / Payment Page
 function openSubscription(planType) {
-    const billing = isYearly ? 'yearly' : 'monthly';
     // Redirect to payment page with plan details
-    window.location.href = `payment.html?plan=${planType}&billing=${billing}`;
+    window.location.href = `payment.html?plan=${planType}&billing=${currentBilling}`;
 }
 
 // Process Subscription

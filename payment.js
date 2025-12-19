@@ -21,51 +21,47 @@ initTheme();
 
 // Get plan from URL params
 const urlParams = new URLSearchParams(window.location.search);
-const selectedPlan = urlParams.get('plan') || 'professional';
+const selectedPlan = urlParams.get('plan') || 'institute';
 const billingCycle = urlParams.get('billing') || 'monthly';
+
+// Check if this is a student plan
+const isStudentPlan = selectedPlan === 'student-premium';
 
 // Plan data
 const plans = {
-    starter: {
-        name: 'Starter Plan',
-        badge: 'STARTER',
-        desc: 'Perfect for small colleges',
-        monthly: 9999,
-        yearly: 7999,
-        features: [
-            '✓ Basic Analytics Dashboard',
-            '✓ Up to 500 Student Reviews',
-            '✓ College Profile Page',
-            '✓ Email Support'
-        ]
-    },
-    professional: {
-        name: 'Professional Plan',
-        badge: 'PROFESSIONAL',
-        desc: 'Best for growing institutions',
-        monthly: 24999,
-        yearly: 19999,
+    institute: {
+        name: 'Institute Plan',
+        badge: 'INSTITUTE',
+        desc: 'Complete solution for universities & colleges',
+        monthly: 10000,
+        semiannually: 45000,
+        annually: 80000,
         features: [
             '✓ Advanced Analytics Dashboard',
             '✓ Unlimited Student Reviews',
+            '✓ Enhanced College Profile',
             '✓ UGC Approved Badge',
-            '✓ Priority 24/7 Support',
-            '✓ Featured College Listing'
+            '✓ Priority Support (24/7)',
+            '✓ Featured Listing',
+            '✓ Custom Analytics Reports',
+            '✓ Dedicated Account Manager'
         ]
     },
-    enterprise: {
-        name: 'Enterprise Plan',
-        badge: 'ENTERPRISE',
-        desc: 'For large universities & groups',
-        monthly: 49999,
-        yearly: 39999,
+    'student-premium': {
+        name: 'Student Premium',
+        badge: 'PREMIUM',
+        desc: 'Premium features for students',
+        monthly: 200,
+        semiannually: 450,
+        annually: 700,
         features: [
-            '✓ Everything in Professional',
-            '✓ Custom Analytics Dashboard',
-            '✓ Multiple Campus Support',
-            '✓ Premium Verified Badge',
-            '✓ Dedicated Account Manager',
-            '✓ Full API Access'
+            '✓ Ad-free Experience',
+            '✓ Exclusive College Insights',
+            '✓ Placement Statistics Access',
+            '✓ Direct Q&A with Alumni',
+            '✓ Compare Colleges Tool',
+            '✓ Priority Support',
+            '✓ Early Access to Reviews'
         ]
     }
 };
@@ -74,12 +70,53 @@ const plans = {
 document.addEventListener('DOMContentLoaded', () => {
     updatePlanDisplay();
     initPaymentMethods();
+    adjustFormForPlanType();
 });
+
+// Adjust form fields based on plan type
+function adjustFormForPlanType() {
+    if (isStudentPlan) {
+        // Update form section title
+        document.getElementById('formSectionTitle').textContent = 'Student Details';
+        
+        // Update institution field to college name
+        document.getElementById('institutionLabel').textContent = 'College/University Name';
+        document.getElementById('institutionInput').placeholder = 'Your current institution';
+        
+        // Update contact label to full name
+        document.getElementById('contactLabel').textContent = 'Full Name';
+        document.getElementById('contactInput').placeholder = 'Your full name';
+        
+        // Hide designation and GST fields for students
+        document.getElementById('designationField').style.display = 'none';
+        document.getElementById('gstField').style.display = 'none';
+    }
+}
 
 // Update plan display
 function updatePlanDisplay() {
     const plan = plans[selectedPlan];
-    const price = billingCycle === 'yearly' ? plan.yearly : plan.monthly;
+    if (!plan) return;
+    
+    // Get price based on billing cycle
+    let price, periodText, billingText;
+    switch(billingCycle) {
+        case 'semiannually':
+            price = plan.semiannually;
+            periodText = '/6 months';
+            billingText = 'Semi Annually';
+            break;
+        case 'annually':
+            price = plan.annually;
+            periodText = '/year';
+            billingText = 'Annually';
+            break;
+        default:
+            price = plan.monthly;
+            periodText = '/month';
+            billingText = 'Monthly';
+    }
+    
     const gst = Math.round(price * 0.18);
     const total = price + gst;
     
@@ -88,11 +125,11 @@ function updatePlanDisplay() {
     document.getElementById('planName').textContent = plan.name;
     document.getElementById('planDesc').textContent = plan.desc;
     document.getElementById('planPrice').textContent = formatCurrency(price);
-    document.getElementById('planPeriod').textContent = billingCycle === 'yearly' ? '/mo (billed yearly)' : '/month';
+    document.getElementById('planPeriod').textContent = periodText;
     
     // Update summary
     document.getElementById('summaryPlanName').textContent = plan.name.replace(' Plan', '');
-    document.getElementById('summaryBilling').textContent = billingCycle === 'yearly' ? 'Yearly' : 'Monthly';
+    document.getElementById('summaryBilling').textContent = billingText;
     document.getElementById('summarySubtotal').textContent = formatCurrency(price);
     document.getElementById('summaryGst').textContent = formatCurrency(gst);
     document.getElementById('summaryTotal').textContent = formatCurrency(total);

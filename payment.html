@@ -103,19 +103,19 @@
         <!-- Right Side - Payment Form -->
         <div class="payment-panel">
             <form class="payment-form" id="paymentForm" onsubmit="processPayment(event)">
-                <!-- Institution Details -->
+                <!-- Customer Details -->
                 <div class="form-section">
-                    <h3>Institution Details</h3>
-                    <div class="form-field">
-                        <label>Institution Name</label>
-                        <input type="text" name="institution" placeholder="e.g., Delhi University" required>
+                    <h3 id="formSectionTitle">Institution Details</h3>
+                    <div class="form-field" id="institutionField">
+                        <label id="institutionLabel">Institution Name</label>
+                        <input type="text" name="institution" id="institutionInput" placeholder="e.g., Delhi University" required>
                     </div>
                     <div class="form-row">
                         <div class="form-field">
-                            <label>Contact Person</label>
-                            <input type="text" name="contact" placeholder="Full name" required>
+                            <label id="contactLabel">Contact Person</label>
+                            <input type="text" name="contact" id="contactInput" placeholder="Full name" required>
                         </div>
-                        <div class="form-field">
+                        <div class="form-field" id="designationField">
                             <label>Designation</label>
                             <input type="text" name="designation" placeholder="e.g., Registrar">
                         </div>
@@ -130,7 +130,7 @@
                             <input type="tel" name="phone" placeholder="+91 98765 43210" required>
                         </div>
                     </div>
-                    <div class="form-field">
+                    <div class="form-field" id="gstField">
                         <label>GST Number <span class="optional">(Optional)</span></label>
                         <input type="text" name="gst" placeholder="For tax invoice">
                     </div>
