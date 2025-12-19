@@ -572,6 +572,7 @@ window.addEventListener('scroll', () => {
 let currentBilling = 'monthly';
 
 function switchBilling(billing) {
+    console.log('Switching billing to:', billing);
     currentBilling = billing;
     
     // Update toggle buttons
