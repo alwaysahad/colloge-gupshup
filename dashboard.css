@@ -95,6 +95,19 @@
     transition: background-color 0.25s ease;
 }
 
+/* Dashboard Logo */
+.dashboard-nav .logo-img {
+    width: 40px;
+    height: 40px;
+    background: #000;
+    padding: 3px;
+    border-radius: 8px;
+}
+
+[data-theme="light"] .dashboard-nav .logo-img {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
 /* Mobile Search Bar */
 .mobile-search-btn {
     display: none;

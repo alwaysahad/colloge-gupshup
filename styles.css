@@ -228,6 +228,49 @@ input, select, textarea {
     font-size: 1.8rem;
 }
 
+.logo-img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #000;
+    padding: 4px;
+    transition: all var(--transition-normal);
+}
+
+/* Light mode logo adjustments */
+[data-theme="light"] .logo-img {
+    background: #0a0a0a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Hide logo text on smaller screens when image is present */
+.logo:has(.logo-img) .logo-text {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .logo-img {
+        width: 36px;
+        height: 36px;
+        padding: 3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-img {
+        width: 32px;
+        height: 32px;
+        padding: 2px;
+    }
+    
+    /* Hide text, show only logo on very small screens */
+    .logo .logo-text {
+        display: none;
+    }
+}
+
 .logo-text .highlight {
     color: var(--accent-primary);
 }

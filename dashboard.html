@@ -15,7 +15,8 @@
     <nav class="navbar dashboard-nav">
         <div class="nav-container">
             <a href="dashboard.html" class="logo">
-                <span class="logo-icon">💬</span>
+                <img src="assets/logo.png" alt="College GupShup" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                <span class="logo-icon" style="display:none;">💬</span>
                 <span class="logo-text">College<span class="highlight">GupShup</span></span>
             </a>
             
@@ -24,7 +25,7 @@
                     <circle cx="11" cy="11" r="8"/>
                     <path d="M21 21l-4.35-4.35"/>
                 </svg>
-                <input type="text" placeholder="Search colleges..." id="searchInput" oninput="filterColleges()">
+                <input type="text" placeholder="Search universities & colleges..." id="searchInput" oninput="filterColleges()">
             </div>
             
             <div class="nav-actions">
@@ -101,7 +102,7 @@
                 <circle cx="11" cy="11" r="8"/>
                 <path d="M21 21l-4.35-4.35"/>
             </svg>
-            <input type="text" placeholder="Search colleges..." id="mobileSearchInput" oninput="filterColleges()">
+            <input type="text" placeholder="Search universities & colleges..." id="mobileSearchInput" oninput="filterColleges()">
             <button class="mobile-search-close" onclick="toggleMobileSearch()">✕</button>
         </div>
     </div>
@@ -113,12 +114,12 @@
             <div class="welcome-section">
                 <div class="welcome-text">
                     <h1>Welcome back, <span id="welcomeName">Student</span>! 👋</h1>
-                    <p>Explore colleges, read honest reviews, and connect with students anonymously.</p>
+                    <p>Explore universities & colleges, read honest reviews, and connect with students anonymously.</p>
                 </div>
                 <div class="quick-stats">
                     <div class="quick-stat">
                         <span class="quick-stat-value">500+</span>
-                        <span class="quick-stat-label">Colleges</span>
+                        <span class="quick-stat-label">Universities & Colleges</span>
                     </div>
                     <div class="quick-stat">
                         <span class="quick-stat-value">15K+</span>
@@ -138,7 +139,7 @@
                     <button class="filter-tab" data-filter="iit">IITs</button>
                     <button class="filter-tab" data-filter="nit">NITs</button>
                     <button class="filter-tab" data-filter="private">Private</button>
-                    <button class="filter-tab" data-filter="state">State Universities</button>
+                    <button class="filter-tab" data-filter="state">State Univ. & Colleges</button>
                 </div>
                 <div class="filter-actions">
                     <select id="sortBy" onchange="sortColleges()">
